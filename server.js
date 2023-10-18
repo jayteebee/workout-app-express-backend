@@ -27,6 +27,7 @@ app.use(
     })
   );
 
+  app.use(express.json())
 
   // PORT 
 const port = process.env.PORT || 5001;
