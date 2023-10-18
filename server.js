@@ -26,5 +26,9 @@ app.use(
     })
   );
 
+
+const port = process.env.PORT || 5001;
+app.listen(port, () => console.log(`Server Started Successfully on port: ${port}`))
+
 app.use(express.json())
 
