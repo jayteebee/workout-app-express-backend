@@ -9,8 +9,10 @@ const {
     deleteOneUser
 } = require("../controllers/usersController")
 
-router.route("/users/register")
+router.route("/register")
     .post(createOneUser)
+
+router.route("/login")
 
 router.route("/users")
     .get(getAllUsers)
@@ -19,5 +21,5 @@ router.route("/users/:id")
     .get(getOneUser)
     .put(updateOneUser)
     .delete(deleteOneUser)
-    
+
 module.exports = router
