@@ -113,6 +113,7 @@ const token = authHeader && authHeader.split(" ")[1]
 if (token == null) return res.status(401)
 
 jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, email) => {
+    console.log('email', email)
       if (err) return res.status(403)
       req.user = email
       next()
