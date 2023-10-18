@@ -28,7 +28,14 @@ const getOneUser = async (req,res) => {
 
 // POST REQUESTS
 // Create One User
-
+const createOneUser = async (req,res) => {
+    try {
+        const hashedPassword = await bcrypt.hash(req.body.password, 10)
+    }
+    catch (err) {
+        res.status(500).json({message: err.message})
+    }
+}
 
 
 module.exports = {
