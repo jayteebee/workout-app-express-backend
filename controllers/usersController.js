@@ -70,6 +70,16 @@ const checkUserData = async (req,res,next) => {
     }
 }
 
+const handleJWT = async (req,res) => {
+    if (req.loginSuccess) {
+        const email = req.userEmail
+        const accessToken = jwt.sign(email, process.env.ACCESS_TOKEN_SECRET)
+        res.json({accessToken: accessToken})
+    } else {
+        res.send("Failure - Not Authorized")
+    }
+}
+
 // PUT REQUESTS
 // Update One User
 const updateOneUser = async (req,res) => {
@@ -100,5 +110,6 @@ module.exports = {
     createOneUser,
     updateOneUser,
     deleteOneUser,
-    checkUserData
+    checkUserData,
+    handleJWT
 }
