@@ -13,6 +13,18 @@ const getAllUsers = async (req,res) => {
     }
 }
 
+// Get One
+const getOneUser = async (req,res) => {
+    try {
+        const user = await User.findById(req.params.id)
+        res.json(user)
+    }
+    catch (err) {
+        res.status(500).json({message: err.message})
+    }
+}
+
 module.exports = {
-    getAllUsers
+    getAllUsers,
+    getOneUser
 }
