@@ -16,7 +16,7 @@ if (env === "production") {
 mongoose.connect(dbUri, {useNewUrlParser: true})
 const db = mongoose.connection
 db.on("error", (err) => console.log(err))
-db.once("open", () => console.log('connected to database'))
+db.once("open", () => console.log('Database Connected'))
 
 
 // MIDDLEWARE
@@ -30,7 +30,7 @@ app.use(
 
   // PORT 
 const port = process.env.PORT || 5001;
-app.listen(port, () => console.log(`Server Started Successfully on port: ${port}`))
+app.listen(port, () => console.log(`Server Started Successfully On Port: ${port}, In The ${env} Environment.`))
 
 app.use(express.json())
 
