@@ -30,7 +30,7 @@ app.use(
 
   // PORT 
 const port = process.env.PORT || 5001;
-app.listen(port, () => console.log(`Server Started Successfully On Port: ${port}, In The ${env} Environment.`))
+app.listen(port, () => console.log(`Server Started Successfully On Port: ${port}, In Environment: ${env}.`))
 
 app.use(express.json())
 
