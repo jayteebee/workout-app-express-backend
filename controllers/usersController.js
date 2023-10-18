@@ -46,6 +46,30 @@ const createOneUser = async (req,res) => {
     }
 }
 
+const checkUserData = async (req,res,next) => {
+    const email = req.body.email;
+    const password = req.body.password
+    const user = await User.findOne({email: email})
+
+    if (!user) {
+    res.status(500).send("Can't find user in database.");
+    }
+
+    try {
+        if ( await bcrypt.compare(password, user.password)) {
+            req.userEmail = email
+            req.loginSuccess = true
+            next()
+        } else {
+            req.loginSuccess = false
+            next()
+        }
+    }
+    catch (err) {
+        res.status(500).json({message: err.message})
+    }
+}
+
 // PUT REQUESTS
 // Update One User
 const updateOneUser = async (req,res) => {
@@ -75,5 +99,6 @@ module.exports = {
     getOneUser,
     createOneUser,
     updateOneUser,
-    deleteOneUser
+    deleteOneUser,
+    checkUserData
 }
