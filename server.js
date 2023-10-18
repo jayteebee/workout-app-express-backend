@@ -17,4 +17,14 @@ const db = mongoose.connection
 db.on("error", (err) => console.log(err))
 db.once("open", () => console.log('connected to database'))
 
+// MIDDLEWARE
+
+app.use(
+    cors({
+      origin:  ["http://localhost:3000"],
+      methods: ["GET", "POST", "PATCH", "PUT", "DELETE"]
+    })
+  );
+
 app.use(express.json())
+
