@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
 
+// used to structure the data for a user entry
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
