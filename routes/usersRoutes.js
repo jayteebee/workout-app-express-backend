@@ -8,14 +8,14 @@ const {
     updateOneUser,
     deleteOneUser,
     login,
-    handleJWT
+    createJWT
 } = require("../controllers/usersController")
 
 router.route("/register")
     .post(createOneUser)
 
 router.route("/login")
-    .post([login, handleJWT])
+    .post([login, createJWT])
 
 router.route("/users")
     .get(getAllUsers)

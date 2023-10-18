@@ -70,7 +70,7 @@ const login = async (req,res,next) => {
     }
 }
 
-const handleJWT = async (req,res) => {
+const createJWT = async (req,res) => {
     if (req.loginSuccess) {
         const email = req.userEmail
         const accessToken = jwt.sign(email, process.env.ACCESS_TOKEN_SECRET)
@@ -112,5 +112,5 @@ module.exports = {
     updateOneUser,
     deleteOneUser,
     login,
-    handleJWT
+    createJWT
 }
