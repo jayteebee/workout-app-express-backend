@@ -16,3 +16,5 @@ mongoose.connect(dbUri, {useNewUrlParser: true})
 const db = mongoose.connection
 db.on("error", (err) => console.log(err))
 db.once("open", () => console.log('connected to database'))
+
+app.use(express.json())
