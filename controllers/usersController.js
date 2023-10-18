@@ -84,7 +84,8 @@ const handleJWT = async (req,res) => {
 // Update One User
 const updateOneUser = async (req,res) => {
     try {
-        const user = await User.findByIdAndUpdate(req.params.id, req.body)
+        // new: true = return the updated json instead of original
+        const user = await User.findByIdAndUpdate(req.params.id, req.body, {new: true})
         res.status(201).json(user)
     }
     catch (err) {
