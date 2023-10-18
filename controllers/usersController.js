@@ -98,7 +98,7 @@ const updateOneUser = async (req,res) => {
 const deleteOneUser = async (req,res) => {
     try {
         const user = await User.findByIdAndDelete(req.params.id)
-        res.status(201).json(user)
+        res.status(201).send(`DELETED:, ${user}`)
     }
     catch (err) {
         res.status(500).json({message: err.message})
