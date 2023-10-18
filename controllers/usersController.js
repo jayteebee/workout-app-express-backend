@@ -1,5 +1,7 @@
 const express = require("express")
 const User = require("../schemas/userSchema")
+const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
 
 // GET REQUESTS
 // Get All
@@ -23,6 +25,11 @@ const getOneUser = async (req,res) => {
         res.status(500).json({message: err.message})
     }
 }
+
+// POST REQUESTS
+// Create One User
+
+
 
 module.exports = {
     getAllUsers,
