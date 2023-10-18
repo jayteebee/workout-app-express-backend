@@ -31,6 +31,15 @@ const getOneUser = async (req,res) => {
 const createOneUser = async (req,res) => {
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10)
+
+        const user = new User({
+            name: req.body.name,
+            email: req.body.email,
+            password: hashedPassword
+        });
+
+        const newUser = await user.save()
+        res.status(201).json(newUser)
     }
     catch (err) {
         res.status(500).json({message: err.message})
