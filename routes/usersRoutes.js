@@ -6,13 +6,15 @@ const {
     getOneUser,
     createOneUser,
     updateOneUser,
-    deleteOneUser
+    deleteOneUser,
+    checkUserData
 } = require("../controllers/usersController")
 
 router.route("/register")
     .post(createOneUser)
 
 router.route("/login")
+    .post([checkUserData])
 
 router.route("/users")
     .get(getAllUsers)
