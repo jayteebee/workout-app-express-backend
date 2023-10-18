@@ -46,9 +46,21 @@ const createOneUser = async (req,res) => {
     }
 }
 
+// PUT REQUESTS
+// Update One User
+const updateOneUser = async (req,res) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.params.id)
+        res.status(201).json(user)
+    }
+    catch (err) {
+        res.status(500).json({message: err.message})
+    }
+}
 
 module.exports = {
     getAllUsers,
     getOneUser,
-    createOneUser
+    createOneUser,
+    updateOneUser
 }
