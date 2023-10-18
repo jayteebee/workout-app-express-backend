@@ -49,5 +49,6 @@ const createOneUser = async (req,res) => {
 
 module.exports = {
     getAllUsers,
-    getOneUser
+    getOneUser,
+    createOneUser
 }
