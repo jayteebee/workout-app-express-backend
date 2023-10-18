@@ -46,7 +46,7 @@ const createOneUser = async (req,res) => {
     }
 }
 
-const checkUserData = async (req,res,next) => {
+const login = async (req,res,next) => {
     const email = req.body.email;
     const password = req.body.password
     const user = await User.findOne({email: email})
@@ -111,6 +111,6 @@ module.exports = {
     createOneUser,
     updateOneUser,
     deleteOneUser,
-    checkUserData,
+    login,
     handleJWT
 }
