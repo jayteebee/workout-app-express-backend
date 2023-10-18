@@ -7,14 +7,15 @@ const {
     createOneUser,
     updateOneUser,
     deleteOneUser,
-    checkUserData
+    checkUserData,
+    handleJWT
 } = require("../controllers/usersController")
 
 router.route("/register")
     .post(createOneUser)
 
 router.route("/login")
-    .post([checkUserData])
+    .post([checkUserData, handleJWT])
 
 router.route("/users")
     .get(getAllUsers)
