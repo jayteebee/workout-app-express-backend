@@ -29,7 +29,6 @@ const getOneUser = async (req,res) => {
 // POST REQUESTS
 // Create One User
 const createOneUser = async (req,res) => {
-    console.log('req', req.body.name)
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10)
 
