@@ -127,5 +127,6 @@ module.exports = {
     updateOneUser,
     deleteOneUser,
     login,
-    createJWT
+    createJWT,
+    authenticateToken
 }
