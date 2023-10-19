@@ -2,6 +2,7 @@ const express = require("express")
 const User = require("../schemas/userSchema")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
+const RefreshToken = require("../schemas/refreshTokenSchema")
 
 // GET REQUESTS
 // Get All
@@ -75,6 +76,8 @@ const createJWT = async (req,res) => {
         const email = req.userEmail
         const accessToken = generateAccessToken(email)
         const refreshToken = jwt.sign(email, process.env.REFRESH_TOKEN_SECRET)
+        const storeRefreshTokenForDatabase = new RefreshToken({email, refreshToken})
+        await storeRefreshTokenForDatabase.save()
         res.json({accessToken: accessToken, refreshToken: refreshToken})
     } else {
         res.send("Failure - Not Authorized")
