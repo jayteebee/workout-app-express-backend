@@ -9,7 +9,8 @@ const {
     deleteOneUser,
     login,
     createJWT,
-    authenticateToken
+    authenticateToken,
+    regenAccessTokenViaRefreshToken
 } = require("../controllers/usersController")
 
 router.route("/register")
