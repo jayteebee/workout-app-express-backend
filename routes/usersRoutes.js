@@ -12,22 +12,18 @@ const {
     authenticateToken
 } = require("../controllers/usersController")
 
-const authTokenMiddleware = authenticateToken
-
 router.route("/register")
     .post(createOneUser)
 
 router.route("/login")
     .post([login, createJWT])
 
-router.use(authTokenMiddleware)
-
 router.route("/users")
     .get(getAllUsers)
 
 router.route("/users/:id")
     .get(getOneUser)
-    .put(updateOneUser)
-    .delete(deleteOneUser)
+    .put([authenticateToken, updateOneUser])
+    .delete([authenticateToken, deleteOneUser])
 
 module.exports = router
