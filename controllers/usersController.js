@@ -73,11 +73,15 @@ const login = async (req,res,next) => {
 const createJWT = async (req,res) => {
     if (req.loginSuccess) {
         const email = req.userEmail
-        const accessToken = jwt.sign({email}, process.env.ACCESS_TOKEN_SECRET)
+        const accessToken = generateAccessToken(email)
         res.json({accessToken: accessToken})
     } else {
         res.send("Failure - Not Authorized")
     }
+}
+
+const generateAccessToken = (email) => {
+    return jwt.sign({email}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: "15s"})
 }
 
 // PUT REQUESTS
