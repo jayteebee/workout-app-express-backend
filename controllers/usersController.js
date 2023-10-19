@@ -75,7 +75,7 @@ const createJWT = async (req,res) => {
         const email = req.userEmail
         const accessToken = generateAccessToken(email)
         const refreshToken = jwt.sign(email, process.env.REFRESH_TOKEN_SECRET)
-        res.json({accessToken: accessToken})
+        res.json({accessToken: accessToken, refreshToken: refreshToken})
     } else {
         res.send("Failure - Not Authorized")
     }
