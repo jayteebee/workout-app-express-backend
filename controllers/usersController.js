@@ -126,6 +126,10 @@ jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, email) => {
 })
 }
 
+const regenAccessTokenViaRefreshToken = (req,res) => {
+
+}
+
 module.exports = {
     getAllUsers,
     getOneUser,
@@ -134,5 +138,6 @@ module.exports = {
     deleteOneUser,
     login,
     createJWT,
-    authenticateToken
+    authenticateToken,
+    regenAccessTokenViaRefreshToken
 }
