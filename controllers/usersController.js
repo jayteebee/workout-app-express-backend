@@ -114,10 +114,12 @@ const deleteOneUser = async (req,res) => {
 const authenticateToken = (req,res,next) => {
     // access the authorization header in the incoming request (think: axiosInstanceWithToken)
 const authHeader = req.headers["authorization"]
+console.log('authHeader', authHeader)
 const token = authHeader && authHeader.split(" ")[1]
 if (token == null) return res.status(401)
 
 jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, email) => {
+    console.log('email', email)
       if (err) return res.sendStatus(403)
       req.user = email
       next()
