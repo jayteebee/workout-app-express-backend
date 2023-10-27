@@ -12,3 +12,6 @@ const getAllRoutines = async (req,res) => {
     }
 }
 
+module.exports = {
+    getAllRoutines
+}
