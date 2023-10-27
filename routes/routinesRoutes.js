@@ -5,4 +5,7 @@ const {
 getAllRoutines
 } = require("../controllers/routinesController")
 
+router.route("/routines")
+    .get(getAllRoutines)
+
 module.exports = router
