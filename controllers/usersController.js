@@ -75,11 +75,12 @@ const createJWT = async (req,res) => {
     if (req.loginSuccess) {
         const email = req.userEmail
         const accessToken = generateAccessToken(email)
-        const refreshToken = jwt.sign(email, process.env.REFRESH_TOKEN_SECRET)
+        const refreshToken = jwt.sign({email}, process.env.REFRESH_TOKEN_SECRET)
 
         const storeRefreshTokenForDatabase = new RefreshToken({email: email, token: refreshToken})
         await storeRefreshTokenForDatabase.save()
-
+        
+        regenAccessTokenViaRefreshToken(refreshToken, email)
         res.json({accessToken: accessToken, refreshToken: refreshToken})
     } else {
         res.send("Failure - Not Authorized")
@@ -131,8 +132,20 @@ jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, email) => {
 })
 }
 
-const regenAccessTokenViaRefreshToken = (req,res) => {
+const regenAccessTokenViaRefreshToken = async (refreshToken, email) => {
+    const userEmail = email;
+if (refreshToken == null) return res.status(401)
 
+const tokenList = await RefreshToken.find({token: refreshToken})
+if (tokenList.length === 0) return res.status(403).send("Invalid refresh token")
+
+jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, userEmail) => {
+
+    if (err) return res.status(403).send("Invalid refresh token")
+    const accessToken = generateAccessToken(userEmail.email)
+    // res.json({accessToken: accessToken})
+    console.log('regen access token', accessToken)
+})
 }
 
 module.exports = {
