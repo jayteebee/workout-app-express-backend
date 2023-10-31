@@ -3,6 +3,7 @@ const User = require("../schemas/userSchema")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const RefreshToken = require("../schemas/refreshTokenSchema")
+const AccessToken = require("../schemas/accessTokenSchema")
 
 // GET REQUESTS
 // Get All
@@ -75,6 +76,7 @@ const createJWT = async (req,res) => {
     if (req.loginSuccess) {
         const email = req.userEmail
         const accessToken = generateAccessToken(email)
+        const storeAccessTokenForDatabase = new AccessToken({token: accessToken})
         const refreshToken = jwt.sign({email}, process.env.REFRESH_TOKEN_SECRET)
 
         const storeRefreshTokenForDatabase = new RefreshToken({email: email, token: refreshToken})
