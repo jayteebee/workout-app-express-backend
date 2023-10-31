@@ -1,6 +1,9 @@
 const mongoose = require("mongoose")
 
 const accessTokenSchema = new mongoose.Schema({
+    email: {
+        type: String,
+    },
     token: {
         type: String,
     }
