@@ -159,3 +159,12 @@ module.exports = {
     authenticateToken,
     regenAccessTokenViaRefreshToken
 }
+
+/**
+ * create access token schema
+ * save access token to database
+ * 
+ * create checkAccessTokenExpiry function
+ * check for expiry
+ * 
+ */
