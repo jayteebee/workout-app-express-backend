@@ -75,10 +75,12 @@ const login = async (req,res,next) => {
 const createJWT = async (req,res) => {
     if (req.loginSuccess) {
         const email = req.userEmail
+        
         const accessToken = generateAccessToken(email)
         const storeAccessTokenForDatabase = new AccessToken({token: accessToken})
-        const refreshToken = jwt.sign({email}, process.env.REFRESH_TOKEN_SECRET)
+        await storeAccessTokenForDatabase.save()
 
+        const refreshToken = jwt.sign({email}, process.env.REFRESH_TOKEN_SECRET)
         const storeRefreshTokenForDatabase = new RefreshToken({email: email, token: refreshToken})
         await storeRefreshTokenForDatabase.save()
         
