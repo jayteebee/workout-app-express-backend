@@ -241,16 +241,16 @@ module.exports = {
 
 /**
  * STEP 1:
- *  Verify Access Token in createJWT
- *  Send Access Token and token.exp as json
- *  Save access token to local storage
- *  Save the expiry time to local storage
+ *  Verify Access Token in createJWT DONE
+ *  Send Access Token and token.exp as json DONE 
+ *  Save access token to local storage DONE
+ *  Save the expiry time to local storage DONE 
  *      
  * STEP 2:
- *  Move checkAccessTokenExpiry to front end
- *  Remove references to reading/writing to database
- *  Keep currentTimestamp variable
- *  Set up a conditional that checks if the access token is going to expire within 20 seconds (example time)
+ *  Move checkAccessTokenExpiry to front end DONE
+ *  Remove references to reading/writing to database DONE
+ *  Keep currentTimestamp variable DONE 
+ *  Set up a conditional that checks if the access token is going to expire within 20 seconds (example time) DONE
  * 
  *      *** FOLLOW DELETING PROCEDURES ***
  * 
